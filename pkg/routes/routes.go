@@ -28,8 +28,10 @@ func loadApiRoutes(router *gin.Engine) {
 			jokes.GET("/", controllers.GetJokes)
 			jokes.GET("/:jokeID", controllers.GetJoke)
 
-			jokes.POST("/like/:jokeID", controllers.LikeJoke)
-			jokes.POST("/unlike/:jokeID", controllers.UnlikeJoke)
+			jokes.POST("/", controllers.CreateJoke)
+
+			jokes.PUT("/like/:jokeID", controllers.LikeJoke)
+			jokes.PUT("/unlike/:jokeID", controllers.UnlikeJoke)
 		}
 	}
 }
