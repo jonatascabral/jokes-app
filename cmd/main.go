@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/jonatascabral/jokes-app/pkg/routes"
 	"log"
@@ -14,9 +13,7 @@ func main() {
 		log.Fatal("Error loading .env file", err)
 	}
 
-	router := gin.Default()
-
-	routes.LoadRoutes(router)
+	router := routes.LoadRoutes()
 
 	port := ":" + os.Getenv("APP_PORT")
 	router.Run(port)

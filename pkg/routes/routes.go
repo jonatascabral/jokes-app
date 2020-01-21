@@ -6,9 +6,13 @@ import (
 	"github.com/jonatascabral/jokes-app/pkg/controllers"
 )
 
-func LoadRoutes(router *gin.Engine) {
+func LoadRoutes() *gin.Engine {
+	router := gin.Default()
+
 	loadStaticRoutes(router)
 	loadApiRoutes(router)
+
+	return router
 }
 
 func loadStaticRoutes(router *gin.Engine) {

@@ -1,15 +1,17 @@
 package models
 
 type Joke struct {
-	ID 		int 	`json:"id" binding:"required"`
-	Likes 	int 	`json:"likes"`
-	Joke 	string 	`json:"joke" binding:"required"`
+	ID      int    `json:"id" binding:"required"`
+	Likes   int    `json:"likes"`
+	Unlikes int    `json:"unlikes"`
+	Joke    string `json:"joke" binding:"required"`
 }
 
-func (z Joke) New(id int, likes int, joke string) *Joke {
+func (z Joke) New(id int, joke string, likes int, unlikes int) *Joke {
 	return &Joke{
-		ID: id,
-		Likes: likes,
-		Joke: joke,
+		ID:      id,
+		Likes:   likes,
+		Unlikes: unlikes,
+		Joke:    joke,
 	}
 }

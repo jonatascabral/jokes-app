@@ -14,7 +14,9 @@ func acceptJson(c *gin.Context) {
 
 func Root(c *gin.Context) {
 	acceptJson(c)
-	c.JSON(http.StatusOK, "pong")
+	c.JSON(http.StatusOK, gin.H{
+		"message": "pong",
+	})
 }
 
 func GetJokes(c *gin.Context) {
@@ -47,9 +49,7 @@ func UnlikeJoke(c *gin.Context) {
 			c.AbortWithStatus(http.StatusNotFound)
 			return
 		}
-		if joke.Likes > 0 {
-			joke.Likes -= 1
-		}
+		joke.Unlikes += 1
 		c.JSON(http.StatusOK, joke)
 	} else {
 		c.AbortWithStatus(http.StatusNotFound)
