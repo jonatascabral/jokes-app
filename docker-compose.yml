@@ -1,0 +1,66 @@
+version: '3'
+services:
+    database:
+      image: postgres:latest
+      ports:
+       - "5432:5432"
+      environment:
+        - POSTGRES_DB=jokesapp
+        - POSTGRES_USER=jokesapp
+        - POSTGRES_PASSWORD=jokesapp
+      healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U jokesapp"]
+        interval: 5s
+        timeout: 5s
+        retries: 5
+      networks:
+        default:
+          ipv4_address: 192.168.0.10
+
+    redis:
+      image: redis:latest
+      ports:
+       - "6379:6379"
+      healthcheck:
+        test: ["CMD", "redis-cli", "ping"]
+        interval: 5s
+        timeout: 5s
+        retries: 5
+      networks:
+        default:
+          ipv4_address: 192.168.0.11
+
+    rabbit:
+      image: rabbitmq:management
+      ports:
+       - "15672:15672"
+       - "5672:5672"
+      environment:
+        - RABBITMQ_DEFAULT_USER=admin
+        - RABBITMQ_DEFAULT_PASS=admin
+      networks:
+        default:
+         ipv4_address: 192.168.0.12
+
+    app:
+      build:
+        context: .
+      container_name: jokes-api
+      ports:
+        - "8080:8080"
+      volumes:
+        - ./.env:/app/.env
+        - ./resources:/app/resources
+      extra_hosts:
+        - database:192.168.0.10
+        - redis:192.168.0.11
+        - rabbit:192.168.0.12
+      depends_on:
+        - database
+        - redis
+networks:
+    default:
+      ipam:
+        driver: default
+        config:
+        - subnet: 192.168.0.1/24
