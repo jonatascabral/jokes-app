@@ -1,17 +1,19 @@
 package models
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"github.com/jinzhu/gorm"
+)
 
 type Joke struct {
-	ID      int    `json:"id"`
+	gorm.Model
 	Likes   int    `json:"likes" default:"0"`
 	Unlikes int    `json:"unlikes" default:"0"`
-	Joke    string `json:"joke" binding:"required"`
+	Joke    string `json:"joke" binding:"required" gorm:"type:varchar(100)"`
 }
 
-func (z Joke) New(id int, joke string, likes int, unlikes int) *Joke {
+func (z Joke) New(joke string, likes int, unlikes int) *Joke {
 	return &Joke{
-		ID:      id,
 		Likes:   likes,
 		Unlikes: unlikes,
 		Joke:    joke,

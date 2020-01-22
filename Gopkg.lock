@@ -44,10 +44,28 @@
   version = "v6.15.6"
 
 [[projects]]
+  name = "github.com/go-sql-driver/mysql"
+  packages = ["."]
+  revision = "17ef3dd9d98b69acec3e85878995ada9533a9370"
+  version = "v1.5.0"
+
+[[projects]]
   name = "github.com/golang/protobuf"
   packages = ["proto"]
   revision = "6c65a5562fc06764971b7c5d05c76c75e84bdbf7"
   version = "v1.3.2"
+
+[[projects]]
+  name = "github.com/jinzhu/gorm"
+  packages = [".","dialects/mysql","dialects/postgres"]
+  revision = "79a77d771dee4e4b60e9c543e8663bbc80466670"
+  version = "v1.9.12"
+
+[[projects]]
+  name = "github.com/jinzhu/inflection"
+  packages = ["."]
+  revision = "f5c5f50e6090ae76a29240b61ae2a90dd810112e"
+  version = "v1.0.0"
 
 [[projects]]
   name = "github.com/joho/godotenv"
@@ -66,6 +84,12 @@
   packages = ["."]
   revision = "a0f5013415294bb94553821ace21a1a74c0298cc"
   version = "v1.2.0"
+
+[[projects]]
+  name = "github.com/lib/pq"
+  packages = [".","hstore","oid","scram"]
+  revision = "99274577be97ac9b1d95a2d61d566dc9b7cc6a54"
+  version = "v1.3.0"
 
 [[projects]]
   name = "github.com/mattn/go-isatty"
@@ -124,6 +148,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "96d610fbe95b3372f88b08dc14e6a1cb5406077aafeb097bfe009b771df710bb"
+  inputs-digest = "32c0a7808dd690de974d5ef7edf9b330da60014c7c34fd9f4c3480ec5633fd52"
   solver-name = "gps-cdcl"
   solver-version = 1
